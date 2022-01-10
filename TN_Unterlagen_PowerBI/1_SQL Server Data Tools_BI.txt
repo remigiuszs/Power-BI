@@ -1,0 +1,10 @@
+SQL Server Data Tools - Business Intelligence for VS 2012
+
+***Muss vor Erstellung des Tabular Model Projects ausgeführt werden***
+ 
+http://blogs.msdn.com/b/analysisservices/archive/2013/03/06/sql-server-data-tools-business-intelligence-for-visual-studio-2012-released-online.aspx
+
+Download Template:
+
+http://www.microsoft.com/download/details.aspx?id=36843
+

@@ -1,0 +1,18 @@
+# PowerShell-Bibliothek öffnen von: C:\Program Files\Microsoft SQL Server\110\Tools\PowerPivotTools\SPAddinConfiguration\Resources\ConfigurePowerPivot.ps1
+Add-SPSolution -LiteralPath 'C:\Program Files\Microsoft SQL Server\110\Tools\PowerPivotTools\SPAddinConfiguration\Resources\powerpivotfarmsolution.wsp'
+Add-SPSolution -LiteralPath 'C:\Program Files\Microsoft SQL Server\110\Tools\PowerPivotTools\SPAddinConfiguration\Resources\PowerPivotFarm14Solution.wsp'
+Add-SPSolution -LiteralPath 'C:\Program Files\Microsoft SQL Server\110\Tools\PowerPivotTools\SPAddinConfiguration\Resources\powerpivotwebapplicationsolution.wsp'
+DeployFarmSolution $false
+DeployWebAppSolutionToCentralAdmin $false
+Install-SPFeature -path PowerPivotFarm -Force
+Install-SPFeature -path PowerPivotFarm -Force -CompatibilityLevel 14
+Install-SPFeature -path PowerPivotCA -Force
+InstallSiteCollectionFeatures
+New-PowerPivotSystemServiceInstance -Provision:$true
+New-PowerPivotServiceApplication -ServiceApplicationName 'Default PowerPivot Service Application' -DatabaseServerName 'SRV1' -DatabaseName 'DefaultPowerPivotServiceApplicationDB-512d521b-25fa-4326-9cee-0f233a7446da' -AddToDefaultProxyGroup:$true
+Set-PowerPivotSystemService -Confirm:$false
+DeployWebAppSolution 'http://srv1:8080/' 2047 $false
+EnableSiteFeatures 'http://srv1:8080' $true
+CreateUnattendedAccountForDataRefresh 'http://srv1:8080' 'PowerPivotUnattendedAccount' 'PowerPivot Unattended Account for Data Refresh' 'KURS\Administrator' $password 
+AddExcelBIServer
+SetECSUsageTracker 'Excel Services Application'

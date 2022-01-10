@@ -1,0 +1,7 @@
+Download SQL Server Data Tools für BI für Visual Studio
+
+http://www.microsoft.com/en-us/download/details.aspx?id=42313
+
+Tutorial Tabular Model Erstellung
+
+http://msdn.microsoft.com/en-us/library/hh231691.aspx
